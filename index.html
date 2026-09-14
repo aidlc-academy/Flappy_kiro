@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flappy Kiro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-wrapper">
+    <canvas id="gameCanvas" width="480" height="640"></canvas>
+
+    <!-- Speed HUD (visible while playing) -->
+    <div id="speed-hud" class="hidden">
+      <span class="hud-label">SPEED</span>
+      <div id="speed-btns">
+        <button class="spd-btn" data-speed="slow">🐢</button>
+        <button class="spd-btn active" data-speed="normal">▶</button>
+        <button class="spd-btn" data-speed="fast">⚡</button>
+      </div>
+    </div>
+
+    <!-- Overlay shown on start / game over -->
+    <div id="overlay">
+      <h1 id="overlay-title">Flappy Kiro</h1>
+      <p id="overlay-subtitle">Press <kbd>Space</kbd> or tap to start</p>
+      <p id="final-score" class="hidden"></p>
+
+      <!-- Speed selector on start screen -->
+      <div id="speed-select">
+        <span class="hud-label">Starting Speed</span>
+        <div id="speed-select-btns">
+          <button class="spd-btn" data-speed="slow">🐢 Slow</button>
+          <button class="spd-btn active" data-speed="normal">▶ Normal</button>
+          <button class="spd-btn" data-speed="fast">⚡ Fast</button>
+        </div>
+      </div>
+
+      <button id="start-btn">Start Game</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

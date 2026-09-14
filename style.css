@@ -1,0 +1,194 @@
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #080818;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* ── Game wrapper ── */
+#game-wrapper {
+  position: relative;
+  width: 480px;
+  height: 640px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(160, 100, 255, 0.55),
+              0 0 0 1px rgba(168, 85, 247, 0.3);
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #1a0a2e;
+}
+
+/* ── Speed HUD (in-game top-right) ── */
+#speed-hud {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 5, 30, 0.65);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 30px;
+  padding: 5px 10px;
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+
+#speed-hud.hidden { display: none; }
+
+/* ── Shared label ── */
+.hud-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #a78bfa;
+  text-transform: uppercase;
+}
+
+/* ── Speed button groups ── */
+#speed-btns,
+#speed-select-btns {
+  display: flex;
+  gap: 4px;
+}
+
+.spd-btn {
+  background: rgba(109, 40, 217, 0.25);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 20px;
+  color: #d8b4fe;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 3px 10px;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+
+.spd-btn:hover {
+  background: rgba(139, 92, 246, 0.45);
+}
+
+.spd-btn.active {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border-color: #c084fc;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+}
+
+.spd-btn:active {
+  transform: scale(0.93);
+}
+
+/* ── Overlay ── */
+#overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  background: rgba(8, 4, 22, 0.82);
+  backdrop-filter: blur(5px);
+  transition: opacity 0.25s ease;
+  z-index: 20;
+}
+
+#overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#overlay-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #c084fc;
+  text-shadow: 0 0 22px rgba(192, 132, 252, 0.85);
+}
+
+#overlay-subtitle {
+  font-size: 1.05rem;
+  color: #d8b4fe;
+}
+
+#overlay-subtitle kbd {
+  background: rgba(192, 132, 252, 0.18);
+  border: 1px solid #a855f7;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: inherit;
+}
+
+#final-score {
+  font-size: 1.35rem;
+  color: #f9a8d4;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.6;
+}
+
+#final-score.hidden { display: none; }
+
+/* ── Speed selector on start/gameover overlay ── */
+#speed-select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: rgba(109, 40, 217, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 12px;
+  padding: 10px 18px;
+}
+
+#speed-select-btns .spd-btn {
+  padding: 5px 14px;
+  font-size: 0.85rem;
+}
+
+/* ── Start button ── */
+#start-btn {
+  margin-top: 4px;
+  padding: 11px 36px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 22px rgba(168, 85, 247, 0.65);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  letter-spacing: 0.5px;
+}
+
+#start-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 32px rgba(168, 85, 247, 0.95);
+}
+
+#start-btn:active { transform: scale(0.96); }
+
+/* ── Responsive ── */
+@media (max-height: 660px), (max-width: 500px) {
+  #game-wrapper { width: 320px; height: 427px; }
+  #overlay-title { font-size: 2rem; }
+}
